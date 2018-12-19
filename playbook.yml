@@ -5,3 +5,7 @@
     file:
       path: "/tmp/testando"
       state: touch
+  - name: Instalacao dinamica
+    yum:
+      name: "{{ name_pkg }}"
+      state: present
