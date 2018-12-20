@@ -5,3 +5,4 @@
     yum:
       name: "{{ name_pkg }}"
       state: present
+    register: pacotes
