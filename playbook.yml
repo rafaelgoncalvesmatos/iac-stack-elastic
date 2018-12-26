@@ -1,5 +1,7 @@
 - hosts: all
   become: true
+  roles: 
+    - tunning
   tasks:
   - name: Instalacao dinamica
     yum:
