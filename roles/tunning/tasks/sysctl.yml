@@ -5,7 +5,6 @@
     sysctl_set: yes
     state: present
     reload: yes
-  tags: teste
   with_dict: "{{ elasticsearch_sysctl_parameters }}"
 
 - name: Create template for sysctl
