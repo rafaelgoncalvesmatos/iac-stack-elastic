@@ -1,4 +1,4 @@
-- name: Add or modify nofile soft limit for the user joe
+- name: Add or modify nofile soft limit for the user elasticsearch
   pam_limits:
     domain: elasticsearch
     limit_type: soft
