@@ -11,4 +11,7 @@ elasticsearch_sysctl_parameters:
   chave3: 
     key: vm.vfs_cache_pressure
     value: 50
+  chave4: 
+    key: vm.max_map_count
+    value: 262144
 
