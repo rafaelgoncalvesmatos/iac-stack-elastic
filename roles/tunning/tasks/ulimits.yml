@@ -1,0 +1,14 @@
+- name: Add or modify nofile soft limit for the user joe
+  pam_limits:
+    domain: elasticsearch
+    limit_type: soft
+    limit_item: nofile
+    value: 65536 
+
+- name: Change file limits.conf
+  template:
+    src: limits.conf.j2
+    dest: /etc/security/limits.conf
+    owner: root
+    group: root
+    mode: '0644'    

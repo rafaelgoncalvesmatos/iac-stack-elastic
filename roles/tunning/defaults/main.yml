@@ -1,2 +1,14 @@
 ---
 # defaults file for roles/directory
+
+elasticsearch_sysctl_parameters:
+  chave1:
+    key: fs.file-max
+    value: 131072
+  cheve2:
+    key: vm.swappiness
+    value: 1 
+  chave3: 
+    key: vm.vfs_cache_pressure
+    value: 50
+

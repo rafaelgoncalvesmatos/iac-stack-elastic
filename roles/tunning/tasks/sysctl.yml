@@ -1,0 +1,17 @@
+- name: Configure sysctl parameters
+  sysctl:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    sysctl_set: yes
+    state: present
+    reload: yes
+  tags: teste
+  with_dict: "{{ elasticsearch_sysctl_parameters }}"
+
+  - name: Create template for sysctl
+  template:
+    src: sysctl.conf.j2
+    dest: /etc/sysctl.conf
+    owner: root
+    group: root
+    mode: 0644
