@@ -3,8 +3,8 @@
   roles: 
     - tunning
   tasks:
-  - name: Instalacao dinamica
-    yum:
-      name: "{{ name_pkg }}"
-      state: present
-    register: pacotes
+#  - name: Instalacao dinamica
+#    yum:
+#      name: "{{ name_pkg }}"
+#      state: present
+#    register: pacotes
