@@ -2,16 +2,16 @@
 # defaults file for roles/directory
 
 elasticsearch_sysctl_parameters:
-  chave1:
+  fs.file-max:
     key: fs.file-max
     value: 131072
-  cheve2:
+  vm.swappiness:
     key: vm.swappiness
     value: 1 
-  chave3: 
+  vm.vfs_cache_pressure: 
     key: vm.vfs_cache_pressure
     value: 50
-  chave4: 
+  vm.max_map_count: 
     key: vm.max_map_count
     value: 262144
 
