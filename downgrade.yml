@@ -13,7 +13,7 @@
 
   - name: Install old version
     yum:
-      name: elasticsearch-6.4.0-1.noarch
+      name: kibana-6.4.0-1.x86_64
       state: present
   
   - name: Copy configuration file
