@@ -15,3 +15,13 @@
     yum:
       name: elasticsearch-6.4.0-1.noarch
       state: present
+  
+  - name: Copy configuration file
+    template:
+      src: kibana.yml.j2
+      dest: /etc/kibana/kibana.yml
+  
+  - name: Restart Kibana
+    service: 
+      name: kibana
+      state: restarted
