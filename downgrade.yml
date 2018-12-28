@@ -2,15 +2,15 @@
   become: true
   tasks:
   - name: New repos
-    file: 
-      src: curator.repo
-      dest: /etc/yum.repos.d
+    template: 
+      src: curator.repo.j2
+      dest: /etc/yum.repos.d/curator.repo
 
   - name: Remove New version
     yum:
       name: kibana-6.5.4-1.x86_64
       state: absent
-      
+
   - name: Install old version
     yum:
       name: elasticsearch-6.4.0-1.noarch
