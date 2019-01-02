@@ -1,0 +1,11 @@
+---
+- name: Adding rotine curator
+  cron:
+    name: Curator rotine {{ item }}
+    minute: "00"
+    hour: "00"
+    job: "/bin/curator --config /root/{{ item }}/conf.yml  /root/{{ item }}/delete_indices.yml"
+  with_items:
+    - curator
+    - curator-filebeat
+    - curator-monitoring

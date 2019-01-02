@@ -1,0 +1,59 @@
+---
+# tasks file for roles/directory
+- name: Curator directory
+  file:
+    path: /root/{{ item }}
+    state: directory
+    mode: 0755
+  with_items:
+    - curator
+    - curator-monitoring
+    - curator-filebeat
+
+- name: Copy files conf - curator
+  template:
+    src: curator.conf.yml.j2
+    dest: /root/curator/conf.yml
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Copy files delete - curator
+  template:
+    src: curator.delete_indices.yml.j2
+    dest: /root/curator/delete_indices.yml
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Copy files conf - filebeat
+  template:
+    src: filebeat.conf.yml.j2
+    dest: /root/curator-filebeat/conf.yml
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Copy files delete - filebeat
+  template:
+    src: filebeat.delete_indices.yml.j2
+    dest: /root/curator-filebeat/delete_indices.yml
+    owner: root
+    group: root
+    mode: 0644    
+    
+- name: Copy files conf - monitoring
+  template:
+    src: monitoring.conf.yml.j2
+    dest: /root/curator-monitoring/conf.yml
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Copy files delete - monitoring
+  template:
+    src: monitoring.delete_indices.yml.j2
+    dest: /root/curator-monitoring/delete_indices.yml
+    owner: root
+    group: root
+    mode: 0644    
