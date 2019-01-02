@@ -5,6 +5,7 @@
     minute: "00"
     hour: "00"
     job: "/bin/curator --config /root/{{ item }}/conf.yml  /root/{{ item }}/delete_indices.yml"
+    state=absent
   with_items:
     - curator
     - curator-filebeat
