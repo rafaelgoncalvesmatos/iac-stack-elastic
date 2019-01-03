@@ -1,0 +1,9 @@
+---
+# tasks file for roles/directory
+- name: Install kibana
+  yum_repository:
+    name: Elasticsearch repository for 6.x packages
+    description: elasticsearch-6.x
+    file: elastic.repo
+    baseurl: https://artifacts.elastic.co/packages/6.x/yum
+    gpgcheck: no
