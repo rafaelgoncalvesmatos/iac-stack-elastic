@@ -56,4 +56,4 @@
     dest: /root/curator-monitoring/delete_indices.yml
     owner: root
     group: root
-    mode: 0644    
+    mode: 0644   
