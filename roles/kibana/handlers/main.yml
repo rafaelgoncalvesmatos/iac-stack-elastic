@@ -1,2 +1,7 @@
 ---
 # handlers file for roles/directory
+- name: Restart Kibana
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: kibana

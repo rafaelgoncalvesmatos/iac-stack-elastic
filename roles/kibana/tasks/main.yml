@@ -1,9 +1,26 @@
 ---
 # tasks file for roles/directory
-- name: Install kibana
+- name: Configure repos kibana
   yum_repository:
     name: Elasticsearch repository for 6.x packages
     description: elasticsearch-6.x
     file: elastic.repo
     baseurl: https://artifacts.elastic.co/packages/6.x/yum
     gpgcheck: no
+
+- name: Install kibana
+  yum: 
+    name: kibana
+    state: present
+  notify: Restart Kibana
+
+- name: Enable kibana
+  systemd: 
+    name: kibana
+    enabled: yes
+
+- name: Copy file configuration
+  template:
+    src: kibana.yml.j2
+    dest: /etc/kibana/kibana.yml
+  notify: Restart Kibana
