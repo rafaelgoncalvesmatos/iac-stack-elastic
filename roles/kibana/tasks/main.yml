@@ -2,9 +2,9 @@
 # tasks file for roles/directory
 - name: Configure repos kibana
   yum_repository:
-    name: Elasticsearch repository for 6.x packages
-    description: elasticsearch-6.x
-    file: elastic.repo
+    name: elasticsearch-6.x
+    description: Elasticsearch repository for 6.x packages
+    file: elastic
     baseurl: https://artifacts.elastic.co/packages/6.x/yum
     gpgcheck: no
 
