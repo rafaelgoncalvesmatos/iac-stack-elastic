@@ -1,0 +1,18 @@
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Stop service
+    systemd: 
+      name: kibana
+      state: stopped
+
+  - name: Install old version
+    yum:
+      name: kibana
+      state: latest
+  
+  - name: Start service
+    systemd: 
+      name: kibana
+      state: started
