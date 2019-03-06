@@ -1,8 +1,6 @@
 client:
   hosts:
-    - 10.14.21.131
-    - 10.14.21.132
-    - 10.14.21.133
+    - "{{ ansible.hostname }}"
   port: 9200
   url_prefix:
   use_ssl: False
