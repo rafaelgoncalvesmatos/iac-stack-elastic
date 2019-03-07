@@ -1,0 +1,49 @@
+---
+# tasks file for elasticsearch
+- name: Adicionando chave GPG
+  rpm_key:
+    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Adicionando repositorio
+  template: 
+    src: elasticsearch.repo.j2
+    dest: /etc/yum.repos.d/elasticsearch.repo
+
+- name: Instalacao do Elasticsearch
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - jre
+    - elasticsearch
+
+- name: Criando data
+  file:
+    path: /data
+    owner: root
+    group: elasticsearch
+    state: directory
+    mode: 0770
+
+- name: Definindo configuracao
+  template:
+    src: elasticsearch.yml.j2
+    dest: /etc/elasticsearch/elasticsearch.yml
+    owner: root
+    group: elasticsearch
+    mode: 0660
+  notify: restart elasticsearch
+
+- name: Iniciando servico
+  systemd:
+    name: elasticsearch
+    state: started
+    enabled: yes
+
+- name: Espere o servico subir
+  wait_for: 
+    host: localhost
+    port: 9200
+    delay: 3
+    timeout: 300

@@ -22,7 +22,7 @@ server.host: "0.0.0.0"
 #server.maxPayloadBytes: 1048576
 
 # The Kibana server's name.  This is used for display purposes.
-server.name: "{{ ansible_hostname}}"
+server.name: "{{ ansible_hostname }}"
 
 # The URL of the Elasticsearch in stance to use for all your queries.
 
@@ -30,6 +30,10 @@ server.name: "{{ ansible_hostname}}"
 # setting. When the value of this setting is false, Kibana uses the hostname of the host
 # that connects to this Kibana instance.
 #elasticsearch.preserveHost: true
+
+
+elasticsearch.url: "http://192.168.56.11:9200"
+elasticsearch.hosts: "http://192.168.56.11:9200"
 
 # Kibana uses an index in Elasticsearch to store saved searches, visualizations and
 # dashboards. Kibana creates a new index if the index doesn't already exist.

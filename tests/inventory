@@ -1,8 +1,10 @@
-[elastic]
+[kibana]
 192.168.56.10
+
+[elasticsearch]
 192.168.56.11
 192.168.56.12
 192.168.56.13
 
-[elastic:vars]
+[all:vars]
 ansible_user=vagrant

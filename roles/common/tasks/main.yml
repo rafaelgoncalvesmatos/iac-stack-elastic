@@ -1,0 +1,21 @@
+---
+# tasks file for common
+- name: Adicionando repositorio epel
+  yum:
+    name: epel-release
+    state: present
+
+- name: Pacotes comuns
+  yum:
+    name: "{{ item }}"
+    update_cache: yes
+    state: present
+  loop:
+    - htop
+    - vim
+    - wget
+    - curl 
+    - net-tools
+    - python
+    - python-pip
+    - telnet
