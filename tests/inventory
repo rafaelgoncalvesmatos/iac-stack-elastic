@@ -1,2 +1,8 @@
-localhost
+[elastic]
+192.168.56.10
+192.168.56.11
+192.168.56.12
+192.168.56.13
 
+[elastic:vars]
+ansible_user=vagrant
