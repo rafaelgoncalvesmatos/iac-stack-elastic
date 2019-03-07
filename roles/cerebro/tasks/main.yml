@@ -1,0 +1,15 @@
+---
+# tasks file for cerebro
+- name: Download Cerebro
+  get_url:
+    url: https://github.com/lmenezes/cerebro/releases/download/v0.8.1/cerebro-0.8.1.tgz
+    dest: /tmp/cerebro.tgz
+
+- name: Extracao do arquivo
+  unarchive:
+    src: /tmp/cerebro.tgz
+    dest: /opt/
+    remote_src: yes
+
+- name: Run command
+  shell: "nohup /opt/cerebro-0.8.1/bin/cerebro &"
