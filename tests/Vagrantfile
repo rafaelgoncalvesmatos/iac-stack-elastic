@@ -1,0 +1,50 @@
+# OBRIGATORIO A INSTALACAO DO PLUGIN
+# BASH $ vagrant plugin install vagrant-hostmanager
+Vagrant.configure("2") do |config|
+
+  config.vm.provider "virtualbox" do |kib1|
+          kib1.memory = 512
+          kib1.cpus = 1
+  end
+
+  config.vm.provider "virtualbox" do |elk1|
+          elk1.memory = 2024
+          elk1.cpus = 2
+  end
+  config.vm.provider "virtualbox" do |elk2|
+          elk2.memory = 2024
+          elk2.cpus = 2
+  end
+  config.vm.provider "virtualbox" do |elk3|
+          elk3.memory = 2024
+          elk3.cpus = 2
+  end
+
+  config.vm.define "kibana-01" do |kib1|
+    kib1.vm.hostname = "kibana-01"
+    kib1.vm.box = "centos/7"
+    kib1.vm.network "private_network", ip: "192.168.56.10"
+    kib1.hostmanager.aliases = %w(kibana-01.pensandoemlinux.com.br kibana-01)
+  end
+
+  config.vm.define 'elastic-01' do |elk1|
+    elk1.vm.hostname = 'elastic-01'
+    elk1.vm.box = "centos/7"
+    elk1.vm.network "private_network", ip: "192.168.56.11"
+    elk1.hostmanager.aliases = %w(elastic-01.pensandoemlinux.com.br elastic-01)
+  end
+
+  config.vm.define 'elastic-02' do |elk2|
+    elk2.vm.hostname = 'elastic-02'
+    elk2.vm.box = "centos/7"
+    elk2.vm.network "private_network",  ip: "192.168.56.12"
+    elk2.hostmanager.aliases = %w(elastic-02.pensandoemlinux.com.br elastic-02)
+  end
+  
+  config.vm.define 'elastic-03' do |elk3|
+    elk3.vm.hostname = 'elastic-03'
+    elk3.vm.box = "centos/7"
+    elk3.vm.network "private_network", ip: "192.168.56.13"
+    elk3.hostmanager.aliases = %w(elastic-03.pensandoemlinux.com.br elastic-03)
+  end
+end
