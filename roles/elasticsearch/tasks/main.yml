@@ -47,3 +47,9 @@
     port: 9200
     delay: 3
     timeout: 300
+
+- name: Habilitando plugin geoip
+  shell: "/usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-geoip"
+
+- name: Habilitando plugin user-agent
+  shell: "/usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-user-agent"  

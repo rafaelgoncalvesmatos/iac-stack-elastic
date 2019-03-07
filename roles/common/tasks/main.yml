@@ -1,5 +1,9 @@
 ---
 # tasks file for common
+- name: Disabilitando selinux
+  selinux:
+    state: disabled
+
 - name: Adicionando repositorio epel
   yum:
     name: epel-release

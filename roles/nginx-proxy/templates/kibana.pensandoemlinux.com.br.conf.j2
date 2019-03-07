@@ -1,0 +1,25 @@
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name kibana.pensandoemlinux.com.br;
+	root /var/www/kibana.pensandoemlinux.com.br/public;
+
+	# reverse proxy
+	location / {
+		proxy_pass http://192.168.56.10:5601/app/kibana;
+		include nginxconfig.io/proxy.conf;
+	}
+
+	include nginxconfig.io/general.conf;
+}
+
+# subdomains redirect
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name *.kibana.pensandoemlinux.com.br;
+
+	return 301 http://kibana.pensandoemlinux.com.br$request_uri;
+}

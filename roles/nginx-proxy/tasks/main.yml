@@ -1,0 +1,53 @@
+---
+# tasks file for nginx-proxy
+- name: Adicionando repositorio
+  template:
+    src: nginx.repo.j2
+    dest: /etc/yum.repos.d/nginx.repo
+
+- name: Intalacao do nginx
+  yum: 
+    name: nginx
+    update_cache: yes
+    state: present
+  notify: restart nginx
+
+- name: Criacao do diretorio dos sites
+  file:
+    path: "/etc/nginx/{{ item }}"
+    state: directory
+  loop:
+    - nginxconfig.io
+    - sites-available
+    - sites-enabled
+
+- name: Definicao de configuracao
+  template: 
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+  notify: restart nginx
+
+- name: Definindo site
+  template:
+    src: kibana.pensandoemlinux.com.br.conf.j2
+    dest: /etc/nginx/sites-available/kibana.pensandoemlinux.com.br.conf
+  notify: restart nginx
+
+- name: Habilitando site
+  file:
+    src: /etc/nginx/sites-available/kibana.pensandoemlinux.com.br.conf
+    dest: /etc/nginx/sites-enabled/kibana.pensandoemlinux.com.br.conf
+    state: link
+
+- name: Definindo proxy 
+  template:
+    src: proxy.conf.j2
+    dest: /etc/nginx/nginxconfig.io/proxy.conf
+  notify: restart nginx
+
+
+- name: Definindo header
+  template:
+    src: general.conf.j2
+    dest: /etc/nginx/nginxconfig.io/general.conf
+  notify: restart nginx
