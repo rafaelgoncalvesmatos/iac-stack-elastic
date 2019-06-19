@@ -23,3 +23,4 @@
     - python
     - python-pip
     - telnet
+    - java-11-openjdk

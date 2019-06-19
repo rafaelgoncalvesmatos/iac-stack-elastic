@@ -1,4 +1,4 @@
-- hosts: kibana
+- hosts: all
   become: true
   roles: 
     - common
