@@ -1,2 +1,7 @@
 ---
 # handlers file for cerebro
+- name: restart cerebro
+  systemd:
+    name: cerebro
+    state: restarted
+    enabled: yes

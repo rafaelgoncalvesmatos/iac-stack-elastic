@@ -1,4 +1,11 @@
 - hosts: elasticsearch
   become: true
-  roles: 
+  vars:
+    elastic_user: "cerebro"
+    elastic_pass: "0e54fdcd8290d53b1350ac37a4c776e7"
+    hosts:
+      - elastic-01
+      - elastic-02
+      - elastic-03
+  roles:
     - cerebro

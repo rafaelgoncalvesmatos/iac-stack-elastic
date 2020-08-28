@@ -9,6 +9,11 @@
     name: epel-release
     state: present
 
+- name: Upgrade system
+  yum:
+    name: "*"
+    state: latest
+
 - name: Pacotes comuns
   yum:
     name: "{{ item }}"
@@ -18,7 +23,7 @@
     - htop
     - vim
     - wget
-    - curl 
+    - curl
     - net-tools
     - python
     - python-pip

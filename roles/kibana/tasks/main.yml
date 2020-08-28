@@ -1,21 +1,31 @@
 ---
 # tasks file for roles/directory
-- name: Configure repos kibana
-  yum_repository:
-    name: elasticsearch-6.x
-    description: Elasticsearch repository for 6.x packages
-    file: elastic
-    baseurl: https://artifacts.elastic.co/packages/6.x/yum
-    gpgcheck: no
+# - name: Configure repos kibana
+#   yum_repository:
+#     name: elasticsearch-7.x
+#     description: Elasticsearch repository for 7.x packages
+#     file: elastic
+#     baseurl: https://artifacts.elastic.co/packages/6.x/yum
+#     gpgcheck: no
+
+- name: Adicionando chave GPG
+  rpm_key:
+    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Adicionando repositorio
+  template:
+    src: elasticsearch.repo.j2
+    dest: /etc/yum.repos.d/elasticsearch.repo
 
 - name: Install kibana
-  yum: 
+  yum:
     name: kibana
     state: present
   notify: Restart Kibana
 
 - name: Enable kibana
-  systemd: 
+  systemd:
     name: kibana
     enabled: yes
 

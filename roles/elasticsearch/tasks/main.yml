@@ -6,7 +6,7 @@
     state: present
 
 - name: Adicionando repositorio
-  template: 
+  template:
     src: elasticsearch.repo.j2
     dest: /etc/yum.repos.d/elasticsearch.repo
 
@@ -35,6 +35,11 @@
     mode: 0660
   notify: restart elasticsearch
 
+- name: Java Heap
+  template:
+    src: jvm.options.j2
+    dest: /etc/elasticsearch/jvm.options
+
 - name: Iniciando servico
   systemd:
     name: elasticsearch
@@ -42,14 +47,8 @@
     enabled: yes
 
 - name: Espere o servico subir
-  wait_for: 
+  wait_for:
     host: localhost
     port: 9200
     delay: 3
     timeout: 300
-
-- name: Habilitando plugin geoip
-  shell: "/usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-geoip"
-
-- name: Habilitando plugin user-agent
-  shell: "/usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-user-agent"  

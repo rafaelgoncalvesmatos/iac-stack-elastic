@@ -1,7 +1,10 @@
-[local]
-127.0.0.1
+[kibana]
+192.168.56.10 ansible_hostname=kibana-01
+
+[elasticsearch]
+192.168.56.11 ansible_hostname=elastic-01
+192.168.56.12 ansible_hostname=elastic-02
+192.168.56.13 ansible_hostname=elastic-03
 
 [all:vars]
-ansible_port = 2222
-ansible_user = vagrant
-ansible_password = vagrant
+ansible_user=vagrant

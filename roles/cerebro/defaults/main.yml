@@ -1,2 +1,5 @@
 ---
 # defaults file for cerebro
+elastic_pass:
+elastic_user:
+hosts:

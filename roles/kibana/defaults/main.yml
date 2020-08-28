@@ -1,2 +1,3 @@
 ---
 # defaults file for roles/directory
+elasticsearch_version: 7.x

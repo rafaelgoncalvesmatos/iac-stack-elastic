@@ -1,89 +1,20 @@
-# {{ansible_managed}}
-# ======================== Elasticsearch Configuration ======================= ==
-#
-# NOTA: Elasticsearch vem com padrões razoáveis ​​para a maioria das configurações.
-# Antes de você começar a ajustar e ajustar a configuração, certifique-se de
-# entenda o que você está tentando realizar e as conseqüências.
-#
-# A principal maneira de configurar um nó é através desse arquivo. Este modelo lista
-# as configurações mais importantes que você pode querer configurar para um cluster de produção.
-#
-# Por favor, consulte a documentação para mais informações sobre as opções de configuração:
-# https://www.elastic.co/guide/en/elasticsearch/reference/index.html
-#
-# ---------------------------------- Grupo -------------- ---------------------
-#
-# Use um nome descritivo para o seu cluster:
-#
-cluster.name: elastic-stack
-#
-# ------------------------------------ Nó ------------ ------------------------
-#
-# Use um nome descritivo para o nó:
-#
-node.name: "{{ ansible_hostname }}"
-#
-# Adicione atributos personalizados ao nó:
-#
-# node.attr.rack: r1
-#
-# ----------------------------------- Caminhos ------------- -----------------------
-#
-# Caminho para o diretório onde armazenar os dados (separe vários locais por vírgula):
-#
-path.data: /data/
-#
-# Caminho para os arquivos de log:
-#
+cluster.name: cluster-{{ ansible_hostname }}
+node.name: {{ ansible_hostname }}
+node.data: true
+node.ingest: true
+node.master: true
+path.data: /data/elasticsearch
 path.logs: /var/log/elasticsearch
-#
-# ----------------------------------- Memória ------------- ----------------------
-#
-# Bloqueie a memória na inicialização:
-#
-# bootstrap.memory_lock: true
-#
-# Certifique-se de que o tamanho de heap esteja configurado para cerca de metade da memória disponível
-# no sistema e que o dono do processo pode usar este
-# limite
-#
-# Elasticsearch tem um desempenho ruim quando o sistema está trocando a memória.
-#
-# ---------------------------------- Rede -------------- ---------------------
-#
-# Defina o endereço de ligação para um IP específico (IPv4 ou IPv6):
-#
 network.host: 0.0.0.0
-#
-# Definir uma porta personalizada para HTTP:
-#
-#http.port: 9200
-#
-# Para mais informações, consulte a documentação do módulo de rede.
-#
-# --------------------------------- Descoberta --------------- -------------------
-#
-# Passe uma lista inicial de hosts para executar a descoberta quando o novo nó for iniciado:
-# A lista padrão de hosts é ["127.0.0.1", "[:: 1]"]
-#
-# discovery.zen.ping.unicast.hosts: ["host1", "host2"]
-#
-# Prevenir o "split brain" configurando a maioria dos nós (número total de nós elegíveis / 2 + 1):
-#
-# discovery.zen.minimum_master_nodes:
-#
-# Para mais informações, consulte a documentação do módulo de descoberta zen.
-#
-# ---------------------------------- Gateway -------------- ---------------------
-#
-# Bloqueie a recuperação inicial após uma reinicialização completa do cluster até que N nós sejam iniciados:
-#
-# gateway.recover_after_nodes: 3
-#
-# Para mais informações, consulte a documentação do módulo de gateway.
-#
-# ---------------------------------- Vários -------------- ---------------------
-#
-# Requer nomes explícitos ao deletar índices:
-#
-# action.destructive_requires_name: true
+discovery.seed_hosts: ["{{ ansible_hostname }}"]
+cluster.initial_master_nodes: ["{{ ansible_hostname }}"]
+
+#xpack.license.self_generated.type: basic
+#xpack.security.enabled: true
+#xpack.monitoring.collection.enabled: true
+
+#xpack.security.transport.ssl.enabled: true
+#xpack.security.transport.ssl.verification_mode: certificate
+#xpack.security.transport.ssl.key: /etc/elasticsearch/certs/sp3elastic01.key
+#xpack.security.transport.ssl.certificate: /etc/elasticsearch/certs/sp3elastic01.crt
+#xpack.security.transport.ssl.certificate_authorities: [ "/etc/elasticsearch/certs/elastic-ca.crt" ]
