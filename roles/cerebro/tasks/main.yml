@@ -14,7 +14,7 @@
 - name: Copy configuration Cerebro
   template:
     src: application.conf.j2
-    dest: /tmp/application.conf
+    dest: /etc/cerebro/application.conf
   notify: restart cerebro
 
 - name: Enable Cerebro

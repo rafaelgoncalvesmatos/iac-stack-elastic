@@ -15,10 +15,9 @@
     name: "{{ item }}"
     state: present
   loop:
-    - jre
     - elasticsearch
 
-- name: Criando data
+- name: Criando diretorio data
   file:
     path: /data
     owner: root
@@ -35,6 +34,15 @@
     mode: 0660
   notify: restart elasticsearch
 
+- name: Definindo configuracao
+  template:
+    src: elastic-certificates.p12
+    dest: /etc/elasticsearch/elastic-certificates.p12
+    owner: elasticsearch
+    group: elasticsearch
+    mode: 0600
+  notify: restart elasticsearch
+
 - name: Java Heap
   template:
     src: jvm.options.j2
@@ -46,7 +54,7 @@
     state: started
     enabled: yes
 
-- name: Espere o servico subir
+- name: Aguarde o elasticsearch
   wait_for:
     host: localhost
     port: 9200

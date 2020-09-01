@@ -20,11 +20,11 @@ Vagrant.configure("2") do |config|
           elk3.cpus = 2
   end
 
-  config.vm.define "kibana-01" do |kib1|
-    kib1.vm.hostname = "kibana-01"
+  config.vm.define "master-01" do |kib1|
+    kib1.vm.hostname = "master-01"
     kib1.vm.box = "centos/7"
     kib1.vm.network "private_network", ip: "192.168.56.10"
-    kib1.hostmanager.aliases = %w(kibana-01.pensandoemlinux.com.br kibana-01)
+    kib1.hostmanager.aliases = %w(master-01.pensandoemlinux.com.br master-01)
   end
 
   config.vm.define 'elastic-01' do |elk1|

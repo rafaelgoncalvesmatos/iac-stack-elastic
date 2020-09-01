@@ -1,3 +1,6 @@
 server.host: "0.0.0.0"
 server.name: "{{ ansible_hostname }}"
-elasticsearch.url: "http://localhost:9200"
+elasticsearch.hosts: [ "http://localhost:9200" ]
+
+# elasticsearch.username: "elastic"
+# elasticsearch.password: "Hw3RxPQCFCxgmq466a7t"

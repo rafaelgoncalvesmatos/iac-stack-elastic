@@ -1,20 +1,31 @@
 cluster.name: cluster-{{ ansible_hostname }}
+
+cluster.initial_master_nodes: ["{{ ansible_hostname }}"]
+discovery.seed_hosts: ["{{ ansible_hostname }}"]
+discovery.zen.minimum_master_nodes: 1
+# discovery.zen.ping.unicast.hosts: ["{{ ansible_hostname }}"]
+network.host: 0.0.0.0
+
 node.name: {{ ansible_hostname }}
 node.data: true
 node.ingest: true
 node.master: true
+
 path.data: /data/elasticsearch
 path.logs: /var/log/elasticsearch
-network.host: 0.0.0.0
-discovery.seed_hosts: ["{{ ansible_hostname }}"]
-cluster.initial_master_nodes: ["{{ ansible_hostname }}"]
 
-#xpack.license.self_generated.type: basic
-#xpack.security.enabled: true
-#xpack.monitoring.collection.enabled: true
+http.cors.allow-origin: "*"
+http.cors.enabled: true
 
-#xpack.security.transport.ssl.enabled: true
-#xpack.security.transport.ssl.verification_mode: certificate
-#xpack.security.transport.ssl.key: /etc/elasticsearch/certs/sp3elastic01.key
-#xpack.security.transport.ssl.certificate: /etc/elasticsearch/certs/sp3elastic01.crt
-#xpack.security.transport.ssl.certificate_authorities: [ "/etc/elasticsearch/certs/elastic-ca.crt" ]
+# Habilitando xpack security
+# xpack.security.enabled: false
+# xpack.security.transport.ssl.enabled: true
+# xpack.security.transport.ssl.verification_mode: certificate
+# xpack.security.transport.ssl.keystore.path: /etc/elasticsearch/elastic-certificates.p12
+# xpack.security.transport.ssl.truststore.path: /etc/elasticsearch/elastic-certificates.p12
+
+# Habilitando metricas basicas
+xpack.monitoring.collection.enabled: true
+
+# Habilitando licensa trial
+xpack.license.self_generated.type: trial

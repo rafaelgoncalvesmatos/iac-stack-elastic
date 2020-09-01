@@ -1,0 +1,6 @@
+elastic:
+  elastic-01
+  elastic-02
+  elastic-03
+kibana:
+  kibana-01
