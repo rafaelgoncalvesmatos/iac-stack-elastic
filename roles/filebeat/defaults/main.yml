@@ -1,0 +1,3 @@
+---
+# defaults file for roles/filebeat
+elasticsearch_version: "7.x"

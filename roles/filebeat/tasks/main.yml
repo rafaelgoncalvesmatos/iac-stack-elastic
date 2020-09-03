@@ -1,0 +1,31 @@
+---
+# tasks file for roles/filebeat
+- name: Adicionando chave GPG
+  rpm_key:
+    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Adicionando repositorio
+  template:
+    src: elasticsearch.repo.j2
+    dest: /etc/yum.repos.d/elasticsearch.repo
+
+- name: Instalacao do filebeat
+  yum:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - filebeat
+
+- name: Definindo configuracao
+  template:
+    src: filebeat.yml.j2
+    dest: /etc/filebeat/filebeat.yml
+  notify: restart filebeat
+
+- name: Iniciando servico
+  systemd:
+    name: filebeat
+    state: started
+    enabled: yes
+  notify: restart filebeat

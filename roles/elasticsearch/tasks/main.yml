@@ -53,6 +53,7 @@
     name: elasticsearch
     state: started
     enabled: yes
+  notify: restart elasticsearch    
 
 - name: Aguarde o elasticsearch
   wait_for:
@@ -60,3 +61,4 @@
     port: 9200
     delay: 3
     timeout: 300
+  notify: restart elasticsearch
