@@ -1,5 +1,5 @@
 - hosts: elasticsearch
   become: true
   roles:
-    - common
+    # - common
     - kibana

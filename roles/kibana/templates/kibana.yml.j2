@@ -1,8 +1,8 @@
 server.host: "0.0.0.0"
 server.name: "{{ ansible_hostname }}"
-elasticsearch.hosts: [ "http://localhost:9200" ]
+elasticsearch.hosts: [ "http://{{ ansible_eth1.ipv4.address }}:9200" ]
 
 # elasticsearch.username: "elastic"
 # elasticsearch.password: "Hw3RxPQCFCxgmq466a7t"
 
-xpack.security.enabled: false
+# xpack.security.enabled: false

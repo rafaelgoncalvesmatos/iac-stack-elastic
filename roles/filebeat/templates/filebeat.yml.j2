@@ -11,7 +11,7 @@ setup.template.settings:
   index.number_of_shards: 3
 setup.kibana:
 output.elasticsearch:
-  hosts: ["localhost:9200"]
+  hosts: ["{{ ansible_eth1.ipv4.address }}:9200"]
   # ilm.enabled: true
   
 #- module: nginx

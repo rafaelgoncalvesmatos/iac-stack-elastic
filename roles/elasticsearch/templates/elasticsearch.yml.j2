@@ -4,7 +4,7 @@ cluster.initial_master_nodes: ["{{ ansible_hostname }}"]
 discovery.seed_hosts: ["{{ ansible_hostname }}"]
 discovery.zen.minimum_master_nodes: 1
 # discovery.zen.ping.unicast.hosts: ["{{ ansible_hostname }}"]
-network.host: 0.0.0.0
+network.host: {{ ansible_eth1.ipv4.address }} 
 
 node.name: {{ ansible_hostname }}
 node.data: true
